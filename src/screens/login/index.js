@@ -11,8 +11,8 @@ const Login = () => {
         <TextInput type='password' placeholder='Password' />
         <button type='submit'>Login</button>
         <div className='Line'></div>
-        <div className='BottomContainer'>
-          <a href='./signup' className='ForgotPasswordText'>Forgot Password?</a>
+        <div className='LoginBottomContainer'>
+          <p>Don't have an account?</p>
           <button>Sign Up</button>
         </div>
       </form>
