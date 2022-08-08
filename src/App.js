@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Login from './screens/login'
 
 const App = () => {
   return (
-    <div>
-      <h1>Budgeter</h1>
-    </div>
+    <main>
+      <Login />
+    </main>
   );
 }
 
