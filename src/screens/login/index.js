@@ -1,19 +1,23 @@
 import React from 'react'
+import TextInput from '../../components/TextInput'
 import './login.css'
 
 const Login = () => {
   return (
-    <div className='Login'>
+    <div>
       <h1 className='BudgeterText'>Budgeter</h1>
       <form className='LoginBox'>
-        <input type='text' placeholder='Email' />
-        <input type='password' placeholder='Password' />
-        <button type='submit' className='LoginButton'>Login</button>
-        
+        <TextInput type='text' placeholder='Email' />
+        <TextInput type='password' placeholder='Password' />
+        <button type='submit'>Login</button>
+        <div className='Line'></div>
+        <div className='BottomContainer'>
+          <a href='./signup' className='ForgotPasswordText'>Forgot Password?</a>
+          <button>Sign Up</button>
+        </div>
       </form>
     </div>
   )
 }
-
 
 export default Login;
