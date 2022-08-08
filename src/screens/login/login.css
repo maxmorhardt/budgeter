@@ -49,3 +49,19 @@ body {
   align-items: center;
   margin-top: 20px;
 }
+.ForgotPasswordContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.ForgotPasswordText {
+  font-size: 1em;
+  color: #3d5f82;
+  text-decoration: none;
+}
+.ForgotPasswordText:hover {
+  color: #2c3e50;
+  text-decoration: underline;
+}

@@ -9,13 +9,16 @@ const Login = () => {
       <form className='LoginBox'>
         <TextInput type='text' placeholder='Email' />
         <TextInput type='password' placeholder='Password' />
-        <button type='submit'>Login</button>
+        <button type='submit'>Log In</button>
         <div className='Line'></div>
         <div className='LoginBottomContainer'>
           <p>Don't have an account?</p>
           <button>Sign Up</button>
         </div>
       </form>
+      <div className='ForgotPasswordContainer'>
+        <a className='ForgotPasswordText' href='/forgotpassword'>Forgot your password?</a>
+      </div>
     </div>
   )
 }
