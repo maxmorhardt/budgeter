@@ -1,7 +1,7 @@
 body {
   background: #f0f2f5;
 }
-.budgeterTextSignup {
+.budgeter-text-sign-up {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 4em;
   font-weight: bold;
@@ -9,7 +9,7 @@ body {
   text-align: center;
   margin-top: 1em;
 }
-.signupBox {
+.sign-up-box {
   width: 30em;
   height: 30em;
   display: flex;
@@ -21,7 +21,7 @@ body {
   border-radius: 25px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
-.submitSignupButton {
+.submit-sign-up-button {
   width: 80%;
   height: 40px;
   border-radius: 5px;
@@ -31,7 +31,19 @@ body {
   font-size: 1.2em;
   cursor: pointer;
 }
-.loginSignupScreenButton {
+.sign-up-bottom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.already-have-account {
+  font-size: 1.2em;
+  color: #000;
+  margin-top: 1em;
+}
+.log-in-sign-up-page-button {
   width: 100px;
   height: 40px;
   border-radius: 5px;
@@ -40,16 +52,4 @@ body {
   color: #fff;
   font-size: 1.2em;
   cursor: pointer;
-}
-.alreadyHaveAccount {
-  font-size: 1.2em;
-  color: #000;
-  margin-top: 1em;
-}
-.signupBottomContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
 }
