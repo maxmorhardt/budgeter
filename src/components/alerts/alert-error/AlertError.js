@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Button } from 'react'
 import { useToasts } from 'react-toast-notifications'
 
 export const AlertError = ({ content }) => {

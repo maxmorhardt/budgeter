@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { AuthProvider, useAuth } from '../../contexts/AuthContext'
+import { useToasts } from 'react-toast-notifications'
+import { auth } from '../../api/auth'
 import './SignUp.css'
 
 const SignUp = () => {
@@ -10,30 +11,29 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { signUp } = useAuth()
   const navigate = useNavigate()
-  // Navigate to the log in page when the user clicks the log in button
   const navigateToLogIn = () => {
     navigate('/log-in')
   }
-  // Sign up the user when the user clicks the sign up button
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (password === confirmPassword) {
-      try {
-        setLoading(true)
-        setError('')
-        await signUp(email, password)
-      } catch (error) {
-        setError(error.message)
-      }
-    } else {
-      return setError('Passwords do not match')
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      return
     }
-    setLoading(false)
+    setLoading(true)
+    try {
+      await auth.createUserWithEmailAndPassword(email, password)
+      setLoading(false)
+      navigate('/')
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
+    }
   }
+
   return (
-    <AuthProvider>
+    <div>
       <h1 className='budgeter-text-sign-up'>Budgeter</h1>
       <form className='sign-up-box'>
         <FormInput 
@@ -61,10 +61,22 @@ const SignUp = () => {
         <div className='line'></div>
         <div className='sign-up-bottom-container'>
           <p className='already-have-account'>Already have an account?</p>
-          <button className='log-in-sign-up-page-button' onClick={navigateToLogIn}>Log In</button>
+          <button type='button' className='log-in-sign-up-page-button' onClick={navigateToLogIn}>Log In</button>
         </div>
       </form>
-    </AuthProvider>
+    </div>
+  )
+}
+
+const AlertError = ({ content }) => {
+  const { addToast } = useToasts()
+  return (
+    <button onClick={() => addToast(content, {
+      appearance: 'error',
+      autoDismiss: true,
+    })}>
+      Add Toast
+    </button>
   )
 }
 

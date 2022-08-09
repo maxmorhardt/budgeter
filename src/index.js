@@ -8,13 +8,13 @@ import ForgotPassword from "./pages/forgot-password";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/log-in' element={<LogIn/>} />
-      <Route path='/sign-up' element={<SignUp/>} />
-      <Route path='/forgot-password' element={<ForgotPassword/>} />
-      <Route path='/' element={<Home/>} />
-    </Routes>
-  </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/log-in' element={<LogIn/>} />
+        <Route path='/sign-up' element={<SignUp/>} />
+        <Route path='/forgot-password' element={<ForgotPassword/>} />
+        <Route path='/' element={<Home/>} />
+      </Routes>
+    </BrowserRouter>
 );
 
