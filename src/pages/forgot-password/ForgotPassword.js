@@ -6,7 +6,8 @@ import './ForgotPassword.css'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
-  const handleLogInClick = () => {
+  // Navigate to the sign up page when the user clicks the sign up button
+  const navigateToLogIn = () => {
     navigate('/log-in')
   }
   return (
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
         <div className='line'></div>
         <div className='forgot-password-bottom-container'>
         <p className='remember-password'>Remember Your Password?</p>
-          <button className='log-in-forgot-password-page-button' onClick={handleLogInClick}>Log In</button>
+          <button className='log-in-forgot-password-page-button' onClick={navigateToLogIn}>Log In</button>
         </div>
       </form>
     </div>
