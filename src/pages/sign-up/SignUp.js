@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { useToasts } from 'react-toast-notifications'
-import { auth } from '../../api/auth'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useUserAuth } from '../../contexts/AuthContext'
+import { ToastProvider, useToasts } from 'react-toast-notifications'
 import './SignUp.css'
 
 const SignUp = () => {
@@ -12,6 +11,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const { signUp } = useUserAuth()
   const navigate = useNavigate()
   const navigateToLogIn = () => {
     navigate('/log-in')
@@ -23,7 +23,7 @@ const SignUp = () => {
     }
     setLoading(true)
     try {
-      await createUserWithEmailAndPassword(auth, email, password)
+      await signUp(email, password)
       navigate('/')
     } catch (error) {
       setErrorMessage(error.message)
@@ -33,7 +33,9 @@ const SignUp = () => {
   }
 
   useEffect(() => {
-    alert(errorMessage)
+    if (errorMessage) {
+      alert(errorMessage)
+    }
   } , [errorMessage])
 
 
