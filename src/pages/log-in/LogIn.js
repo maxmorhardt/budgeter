@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { useUserAuth } from '../../contexts/AuthContext'
 import './LogIn.css'
 
 const LogIn = () => {
@@ -18,22 +17,22 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    try {
-      await logIn(email, password)
-      navigate('/')
-    } catch (error) {
-      setErrorMessage(error.message)
-    } finally {
-      setLoading(false)
-    }
+    // setLoading(true)
+    // try {
+    //   const res = await logIn(email, password)
+    //   navigate('/')
+    // } catch (error) {
+    //   setErrorMessage(error.message)
+    // } finally {
+    //   setLoading(false)
+    // }
   }
 
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage)
-    }
-  } , [errorMessage])
+  // useEffect(() => {
+  //   if (errorMessage) {
+  //     alert(errorMessage)
+  //   }
+  // } , [errorMessage])
 
   return (
     <div>

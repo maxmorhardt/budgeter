@@ -11,7 +11,6 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
-  const { signUp } = useUserAuth()
   const navigate = useNavigate()
   const navigateToLogIn = () => {
     navigate('/log-in')
@@ -21,22 +20,22 @@ const SignUp = () => {
     if (password !== confirmPassword) {
       return setErrorMessage('Passwords do not match')
     }
-    setLoading(true)
-    try {
-      await signUp(email, password)
-      navigate('/')
-    } catch (error) {
-      setErrorMessage(error.message)
-    } finally {
-      setLoading(false)
-    }
+    // setLoading(true)
+    // try {
+    //   await signUp(email, password)
+    //   navigate('/')
+    // } catch (error) {
+    //   setErrorMessage(error.message)
+    // } finally {
+    //   setLoading(false)
+    // }
   }
 
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage)
-    }
-  } , [errorMessage])
+  // useEffect(() => {
+  //   if (errorMessage) {
+  //     alert(errorMessage)
+  //   }
+  // } , [errorMessage])
 
 
   return (
@@ -75,16 +74,16 @@ const SignUp = () => {
   )
 }
 
-const AlertError = ({ content }) => {
-  const { addToast } = useToasts()
-  return (
-    <button onClick={() => addToast(content, {
-      appearance: 'error',
-      autoDismiss: true,
-    })}>
-      Add Toast
-    </button>
-  )
-}
+// const AlertError = ({ content }) => {
+//   const { addToast } = useToasts()
+//   return (
+//     <button onClick={() => addToast(content, {
+//       appearance: 'error',
+//       autoDismiss: true,
+//     })}>
+//       Add Toast
+//     </button>
+//   )
+// }
 
 export default SignUp
