@@ -1,13 +1,13 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import FormInput from '../../components/form-input';
-import './ForgotPassword.css';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import FormInput from '../../components/form-input'
+import './ForgotPassword.css'
 
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleLogInClick = () => {
-    navigate('/log-in');
+    navigate('/log-in')
   }
   return (
     <div>
@@ -25,4 +25,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword;
+export default ForgotPassword
