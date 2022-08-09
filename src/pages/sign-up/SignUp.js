@@ -12,7 +12,23 @@ const SignUp = () => {
   const navigateToLogIn = () => {
     navigate('/log-in')
   }
-
+  // Checks if passwords match
+  const passwordsMatch = () => {
+    if (password === confirmPassword) {
+      return true
+    } else {
+      return false
+    }
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (passwordsMatch()) {
+      // Make api call to create user
+      navigate('/')
+    } else {
+      alert('Passwords do not match')
+    }
+  }
   return (
     <div>
       <h1 className='budgeter-text-sign-up'>Budgeter</h1>
@@ -23,7 +39,6 @@ const SignUp = () => {
           placeholder='Email' 
           onChange={(event) => {
             setEmail(event.target.value)
-            console.log(email)
           }} />
         <FormInput 
           value = {password}
@@ -31,7 +46,6 @@ const SignUp = () => {
           placeholder='Password' 
           onChange={(event) => {
             setPassword(event.target.value)
-            console.log(password)
           }} />
         <FormInput 
           value = {confirmPassword}
@@ -39,9 +53,8 @@ const SignUp = () => {
           placeholder='Confirm Password' 
           onChange={(event) => {
             setConfirmPassword(event.target.value)
-            console.log(confirmPassword)
           }} />
-        <button className='submit-sign-up-button' type='submit'>Sign Up</button>
+        <button className='submit-sign-up-button' type='submit' onClick={handleSubmit}>Sign Up</button>
         <div className='line'></div>
         <div className='sign-up-bottom-container'>
           <p className='already-have-account'>Already have an account?</p>

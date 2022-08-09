@@ -9,6 +9,7 @@ const LogIn = () => {
   const navigateToSignUp = () => {
     navigate('/sign-up')
   }
+  
   return (
     <div>
       <h1 className='budgeter-text-log-in-page'>Budgeter</h1>
