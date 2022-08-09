@@ -1,10 +1,10 @@
 import React from 'react'
-import './textinput.css'
+import './FormInput.css'
 
-const TextInput = ({placeholder, value, onChange, type}) => {
+const FormInput = ({placeholder, value, onChange, type}) => {
   return (
     <input
-      className='TextInput'
+      className='form-input'
       type={type}
       placeholder={placeholder}
       value={value}
@@ -13,4 +13,4 @@ const TextInput = ({placeholder, value, onChange, type}) => {
   )
 }
 
-export default TextInput;
+export default FormInput;

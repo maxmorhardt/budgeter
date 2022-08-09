@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import TextInput from '../../components/TextInput'
+import TextInput from '../../components/textinput'
 import './signup.css'
 
 const Signup = () => {

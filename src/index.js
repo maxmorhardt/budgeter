@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./screens/login";
-import Signup from "./screens/signup";
-import Home from "./screens/home";
-import ForgotPassword from "./screens/forgotpassword";
+import Login from "./pages/log-in";
+import Signup from "./pages/sign-up";
+import Home from "./pages/home";
+import ForgotPassword from "./pages/forgot-password";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
