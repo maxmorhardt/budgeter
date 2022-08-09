@@ -7,7 +7,6 @@ import Home from "./screens/home";
 import ForgotPassword from "./screens/forgotpassword";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
   <BrowserRouter>
     <Routes>
