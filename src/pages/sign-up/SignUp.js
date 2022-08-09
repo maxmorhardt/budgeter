@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
 import { useToasts } from 'react-toast-notifications'
 import { auth } from '../../api/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import './SignUp.css'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const navigateToLogIn = () => {
@@ -18,19 +19,23 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      return
+      return setErrorMessage('Passwords do not match')
     }
     setLoading(true)
     try {
-      await auth.createUserWithEmailAndPassword(email, password)
-      setLoading(false)
+      await createUserWithEmailAndPassword(auth, email, password)
       navigate('/')
     } catch (error) {
+      setErrorMessage(error.message)
+    } finally {
       setLoading(false)
-      setError(error.message)
     }
   }
+
+  useEffect(() => {
+    alert(errorMessage)
+  } , [errorMessage])
+
 
   return (
     <div>
