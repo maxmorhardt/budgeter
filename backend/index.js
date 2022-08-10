@@ -1,15 +1,11 @@
-const express = require('express');
-//const { default: mongoose } = require('mongoose');
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 const port = 5000
 
-// mongoose.connect("mongodb://localhost:27010/demo", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true,
-// })
-// .then(() => console.log("Connected to DB"))
-// .catch (console.error);
+mongoose.connect(process.env.MONGODB_URI)
+
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
