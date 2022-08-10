@@ -4,9 +4,10 @@ const mongoose = require('mongoose')
 const app = express()
 const port = process.env.PORT
 const User = require('./models/models')
+const path = require('path')
 
 app.use(express.json())
-app.use(express.static(`${__dirname}/build`));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/api/users', async (req, res) => {
   const users = await User.find()
