@@ -8,7 +8,6 @@ const LogIn = () => {
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
-  const { logIn } = useUserAuth()
   const navigate = useNavigate()
 
   const navigateToSignUp = () => {

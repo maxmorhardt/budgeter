@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { useUserAuth } from '../../contexts/AuthContext'
 import { ToastProvider, useToasts } from 'react-toast-notifications'
 import './SignUp.css'
 
