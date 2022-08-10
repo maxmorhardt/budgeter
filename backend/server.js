@@ -6,10 +6,7 @@ const port = process.env.PORT
 const User = require('./models/models')
 
 app.use(express.json())
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use(express.static(`${__dirname}/build`));
 
 app.get('/api/users', async (req, res) => {
   const users = await User.find()
