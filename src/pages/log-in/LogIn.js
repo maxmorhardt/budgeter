@@ -58,9 +58,6 @@ const LogIn = () => {
           <button type='button' className='sign-up-log-in-page-button' onClick={navigateToSignUp}>Sign Up</button>
         </div>
       </form>
-      <div className='forgot-password-log-in-page-container'>
-        <a className='forgot-password-log-in-page-text' href='/forgot-password'>Forgot your password?</a>
-      </div>
     </div>
   )
 }
