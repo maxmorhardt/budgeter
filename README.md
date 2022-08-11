@@ -1,6 +1,29 @@
 # Budgeter
 A website for users to track expenses in an online and organized way.
 
+Deployed to: https://the-budgeter.herokuapp.com/log-in
+
+## Setup
+
+
+
+In the root directory, run:
+
+### `yarn install`
+
+Then change directories to client and run: 
+
+### `yarn install`
+
+Once the packages are installed, in the root directory run:
+
+### `touch .env`
+
+Inside the .env file type the following:
+
+### `NODE_ENV = `development`
+### `MONGODB_LOCAL_URI = `MONGODB_LOCAL_URI = mongodb://127.0.0.1:27017/<NAME_OF_YOUR_LOCAL_DB>`
+
 ## Available Scripts
 
 In the project directory, you can run:
