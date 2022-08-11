@@ -1,5 +1,5 @@
 # Budgeter
-A website for users to track expenses in an online and organized way.
+A website for users to track expenses in an online and organized way.\
 Deployed to: https://the-budgeter.herokuapp.com/
 
 ## Setup
@@ -12,7 +12,7 @@ This will install all dependencies for the frontend and backend
 Once the packages are installed, in the root directory run:
 
 ### `cp .env.example .env`
-This will create a file for environment varaibles.
+This will create a file for environment varaibles.\
 You will need to change <NAME_OF_YOUR_LOCAL_DB> to a MongoDB database that is on your local machine.
 
 ## Available Scripts
