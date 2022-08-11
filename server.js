@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const User = require('./models/models')
 const path = require('path')
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 8080
 
 mongoose.connect(process.env.MONGODB_LOCAL_URI || process.env.MONGODB_PROD_URI, {
   useNewUrlParser: true,
