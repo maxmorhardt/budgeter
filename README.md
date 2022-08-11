@@ -4,13 +4,14 @@ Deployed to: https://the-budgeter.herokuapp.com/
 
 ## Setup
 
-In the root directory and client directory, run:
+0. Install MongoDB here: https://www.mongodb.com/docs/manual/administration/install-community/ \
+
+1. In the root directory and client directory, run:
 
 ### `yarn install`
-This will install all dependencies for the frontend and backend
-\
-\
-Once the packages are installed, in the root directory run:
+This will install all dependencies for the frontend and backend\
+
+2. Once the packages are installed, in the root directory run:
 
 ### `cp .env.example .env`
 This will create a file for environment varaibles.\
