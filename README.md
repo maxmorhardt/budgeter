@@ -8,7 +8,8 @@ In the root directory and client directory, run:
 
 ### `yarn install`
 This will install all dependencies for the frontend and backend
-
+\
+\
 Once the packages are installed, in the root directory run:
 
 ### `cp .env.example .env`
