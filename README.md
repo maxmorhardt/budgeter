@@ -6,7 +6,7 @@ Deployed to: https://the-budgeter.herokuapp.com/
 ## Setup
 
 ### 1. Install MongoDB here: 
-- https://www.mongodb.com/docs/manual/administration/install-community/ 
+https://www.mongodb.com/docs/manual/administration/install-community/ 
 - `sudo` is required to start the brew service.
 - `mongosh` is the command to open the shell on newer versions of MongoDB, not `mongo`.
 
