@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_LOCAL_URI || process.env.MONGODB_PROD_URI, 
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err))
 
-// Serves static files for production build
+// Serves static files for production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'build')))
   app.get('*', (req, res) => {
