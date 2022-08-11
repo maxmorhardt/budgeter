@@ -1,7 +1,7 @@
 # Budgeter
 A website for users to track expenses in an online and organized way. \
 \
-Deployed to: https://the-budgeter.herokuapp.com/
+Deployed here: https://the-budgeter.herokuapp.com/
 
 ## Setup
 
