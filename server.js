@@ -6,24 +6,18 @@ const path = require('path')
 const app = express()
 const port = process.env.PORT
 
+mongoose.connect(process.env.MONGODB_LOCAL_URI || process.env.MONGODB_PROD_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err))
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'build')))
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
   })
-  mongoose.connect(process.env.MONGODB_PROD_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err))
-} else {
-  mongoose.connect(process.env.MONGODB_LOCAL_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err))
 }
 
 app.use(express.json())
