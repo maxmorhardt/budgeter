@@ -9,13 +9,13 @@ Deployed to: https://the-budgeter.herokuapp.com/
 
 ### 2. In the root directory and client directory, run:
 
-`yarn install` \
+`yarn install` 
 - This will install all dependencies for the frontend and backend 
 
 ### 3. Once the packages are installed, in the root directory run:
 
-`cp .env.example .env` \
-- This will create a file for environment varaibles. \
+`cp .env.example .env` 
+- This will create a file for environment varaibles. 
 - You will need to change <NAME_OF_YOUR_LOCAL_DB> to a MongoDB database that is on your local machine. 
 
 ## Available Scripts
