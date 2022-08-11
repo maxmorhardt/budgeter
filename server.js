@@ -22,7 +22,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.json())
 app.get('/api/users', async (req, res) => {
-  console.log(process.env)
   const users = await User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err))
