@@ -4,19 +4,19 @@ Deployed to: https://the-budgeter.herokuapp.com/
 
 ## Setup
 
-### - Install MongoDB here: 
-https://www.mongodb.com/docs/manual/administration/install-community/ 
+### 1. Install MongoDB here: 
+- https://www.mongodb.com/docs/manual/administration/install-community/ 
 
-### - In the root directory and client directory, run:
+### 2. In the root directory and client directory, run:
 
 `yarn install` \
-This will install all dependencies for the frontend and backend 
+- This will install all dependencies for the frontend and backend 
 
-### - Once the packages are installed, in the root directory run:
+### 3. Once the packages are installed, in the root directory run:
 
 `cp .env.example .env` \
-This will create a file for environment varaibles. \
-You will need to change <NAME_OF_YOUR_LOCAL_DB> to a MongoDB database that is on your local machine. 
+- This will create a file for environment varaibles. \
+- You will need to change <NAME_OF_YOUR_LOCAL_DB> to a MongoDB database that is on your local machine. 
 
 ## Available Scripts
 
