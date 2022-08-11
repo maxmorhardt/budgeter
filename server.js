@@ -14,9 +14,9 @@ mongoose.connect(process.env.MONGODB_LOCAL_URI || process.env.MONGODB_PROD_URI, 
   .catch(err => console.log(err))
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'build')))
+  app.use(express.static(path.join(__dirname, 'client', 'build')))
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
   })
 }
 
