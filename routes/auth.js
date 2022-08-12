@@ -4,15 +4,14 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
 
-router.get('/log-in', (req, res) => {
+router.post('/log-in', (req, res) => {
   const body = req.body
-  const { email, password } = body
-  User.findOne({ email })
+  User.findOne({ email: body.email })
     .then(user => {
       if (!user) {
         res.status(400).json({ message: 'User not found' })
       } else {
-        bcrypt.compare(password, user.password)
+        bcrypt.compare(body.password, user.password)
           .then(isMatch => {
             if (isMatch) {
               res.status(200).json({ message: 'Log in successful' })
