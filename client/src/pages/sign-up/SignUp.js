@@ -13,6 +13,7 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  
   const navigateToLogIn = () => {navigate('/log-in')}
   
   const handleSubmit = async (e) => {

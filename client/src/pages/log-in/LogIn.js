@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
+import axios from 'axios'
+import { API_PATH } from '../../helpers/environ'
 import './LogIn.css'
 
 const LogIn = () => {
@@ -10,28 +12,32 @@ const LogIn = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const navigateToSignUp = () => {
-    navigate('/sign-up')
-  }
+  const navigateToSignUp = () => {navigate('/sign-up')}
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // setLoading(true)
-    // try {
-    //   const res = await logIn(email, password)
-    //   navigate('/')
-    // } catch (error) {
-    //   setErrorMessage(error.message)
-    // } finally {
-    //   setLoading(false)
-    // }
+    if (!email || !password) {
+      return setErrorMessage('Please fill in all fields')
+    }
+    setLoading(true)
+    axios({
+      method: 'POST',
+      url:  API_PATH + '/api/auth/log-in',
+      data: {
+        email: email,
+        password: password
+      }
+    })
+      .then(res => {navigate('/home')})
+      .catch(err => {setErrorMessage(err.response.data.message)})
+      .finally(() => {setLoading(false)})
   }
 
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     alert(errorMessage)
-  //   }
-  // } , [errorMessage])
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage)
+    }
+  } , [errorMessage])
 
   return (
     <div>
@@ -51,7 +57,7 @@ const LogIn = () => {
           onChange={(event) => {
             setPassword(event.target.value)
           }} />
-        <button className='submit-log-in-button' type='submit' onClick={handleSubmit}>Log In</button>
+        <button disabled={loading} className='submit-log-in-button' type='submit' onClick={handleSubmit}>Log In</button>
         <div className='line'></div>
         <div className='log-in-box-bottom-container'>
           <p className='no-account-text'>Don't have an account?</p>
