@@ -30,18 +30,21 @@ router.post('/sign-up', (req, res) => {
   User.findOne({ email: body.email })
     .then(user => {
       if (user) {
-        return res.status(400).json({
-          message: 'Email already exists'
-        })
+        res.status(400).json({ message: 'User already exists' })
+      } else {
+        bcrypt.hash(body.password, 10)
+          .then(hash => {
+            const newUser = new User({
+              email: body.email,
+              password: hash
+            })
+            newUser.save()
+              .then(user => {res.status(200).json(
+                { message: 'User created' })
+              }).catch(err => res.status(400).json(err))
+          }).catch(err => res.status(400).json(err))
       }
-    }).catch(err => res.status(400).json(err))
-  const newUser = new User(body)
-  hashedPassword = bcrypt.hash(newUser.password, 10)
-    .then(hashedPassword => {
-      newUser.password = hashedPassword
-      return newUser.save()
-    }).then(user => {
-      res.status(200).json({ message: 'Sign up successful' })
-    }).catch(err => res.status(400).json(err))})
+    })
+  })
 
 module.exports = router
