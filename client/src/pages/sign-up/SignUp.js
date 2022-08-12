@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
+import axios from 'axios'
 import { ToastProvider, useToasts } from 'react-toast-notifications'
 import './SignUp.css'
 
@@ -11,30 +12,38 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const navigateToLogIn = () => {
-    navigate('/log-in')
-  }
+  const navigateToLogIn = () => {navigate('/log-in')}
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       return setErrorMessage('Passwords do not match')
     }
-    // setLoading(true)
-    // try {
-    //   await signUp(email, password)
-    //   navigate('/')
-    // } catch (error) {
-    //   setErrorMessage(error.message)
-    // } finally {
-    //   setLoading(false)
-    // }
+    axios({
+      method: 'POST',
+      url: 'http://localhost:5000/api/sign-up',
+      data: {
+        email: email,
+        password: password
+      }
+    })
+      .then(res => {navigate('/home')})
+      .catch(err => {
+        if (err.response.data.error) {
+          setErrorMessage(err.response.data.error)
+        } else {
+          setErrorMessage(err)
+      }
+    })
+        
+
   }
 
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     alert(errorMessage)
-  //   }
-  // } , [errorMessage])
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage)
+    }
+  } , [errorMessage])
 
 
   return (
