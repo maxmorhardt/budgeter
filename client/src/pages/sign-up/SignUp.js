@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
 import axios from 'axios'
+import { API_PATH } from '../../helpers/environ'
 import { ToastProvider, useToasts } from 'react-toast-notifications'
 import './SignUp.css'
 
@@ -15,28 +16,21 @@ const SignUp = () => {
   const navigateToLogIn = () => {navigate('/log-in')}
   
   const handleSubmit = async (e) => {
+    console.log('HERE:', API_PATH)
     e.preventDefault()
     if (password !== confirmPassword) {
       return setErrorMessage('Passwords do not match')
     }
     axios({
       method: 'POST',
-      url: 'http://localhost:5000/api/sign-up',
+      url:  API_PATH + '/api/sign-up',
       data: {
         email: email,
         password: password
       }
     })
       .then(res => {navigate('/home')})
-      .catch(err => {
-        if (err.response.data.error) {
-          setErrorMessage(err.response.data.error)
-        } else {
-          setErrorMessage(err)
-      }
-    })
-        
-
+      .catch(err => {setErrorMessage(err.response.data.message)})
   }
 
   useEffect(() => {
