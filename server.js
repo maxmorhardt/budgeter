@@ -2,8 +2,9 @@ require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
-const userRoute = require('./routes/users')
 const cors = require('cors')
+const userRoute = require('./routes/users')
+const authRoute = require('./routes/auth')
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -36,6 +37,7 @@ const corsOptions ={
 app.use(cors(corsOptions));
 
 // Routes
-app.use('/api', userRoute)
+app.use('/api/auth', authRoute)
+//app.use('/api', userRoute)
 
 app.listen(port, () => console.log(`Listening on port ${port}`))

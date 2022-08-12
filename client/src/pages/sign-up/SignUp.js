@@ -16,14 +16,20 @@ const SignUp = () => {
   const navigateToLogIn = () => {navigate('/log-in')}
   
   const handleSubmit = async (e) => {
-    console.log('HERE:', API_PATH)
     e.preventDefault()
+    if (!email || !password) {
+      return setErrorMessage('Please fill in all fields')
+    }
     if (password !== confirmPassword) {
       return setErrorMessage('Passwords do not match')
     }
+    if (password.length < 6) {
+      return setErrorMessage('Password must be at least 6 characters')
+    }
+    setLoading(true)
     axios({
       method: 'POST',
-      url:  API_PATH + '/api/sign-up',
+      url:  API_PATH + '/api/auth/sign-up',
       data: {
         email: email,
         password: password
@@ -31,14 +37,15 @@ const SignUp = () => {
     })
       .then(res => {navigate('/home')})
       .catch(err => {setErrorMessage(err.response.data.message)})
+      .finally(() => {setLoading(false)})
   }
 
+  // REMOVE THIS ONCE ALERTS ARE IMPLEMENTED
   useEffect(() => {
     if (errorMessage) {
       alert(errorMessage)
     }
   } , [errorMessage])
-
 
   return (
     <div>
