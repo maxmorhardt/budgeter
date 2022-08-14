@@ -51,9 +51,15 @@ router.post('/sign-up', (req, res) => {
     })
   })
 
+  router.get('/validate-token', (req, res) => {
+    const token = req.headers.authorization
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
+    const isExpired = decoded.exp < Date.now() / 1000
+    return res.status(200).json({ 'isExpired': isExpired })
+  })
+
   function generateToken(user) {
     return jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '1h' })
   }
-
 
 module.exports = router;
