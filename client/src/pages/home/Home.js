@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    navigate('/log-in')
+    setLoading(true)
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/log-in')
+    }
+    setLoading(false)
   } , [])
 
   return (
     <div>
-      <h1>Home Page TBD</h1>
+      {loading ? <h1>Loading...</h1> : <h1>Home</h1>}
     </div>
   )
 }

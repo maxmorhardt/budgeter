@@ -14,7 +14,10 @@ router.post('/log-in', (req, res) => {
         bcrypt.compare(body.password, user.password)
           .then(isMatch => {
             if (isMatch) {
-              res.status(200).json({ message: 'Log in successful' })
+              res.status(200).json({ 
+                message: 'Log in successful',
+                token: generateToken(user), 
+              })
             } else {
               res.status(400).json({ message: 'Incorrect password' })
             }
@@ -39,11 +42,18 @@ router.post('/sign-up', (req, res) => {
             })
             newUser.save()
               .then(user => {res.status(200).json(
-                { message: 'User created' })
+                { message: 'User created', 
+                  token: generateToken(user)
+               })
               }).catch(err => res.status(400).json(err))
           }).catch(err => res.status(400).json(err))
       }
     })
   })
 
-module.exports = router
+  function generateToken(user) {
+    return jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '1h' })
+  }
+
+
+module.exports = router;

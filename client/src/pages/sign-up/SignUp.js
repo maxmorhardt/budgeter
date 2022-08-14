@@ -36,7 +36,10 @@ const SignUp = () => {
         password: password
       }
     })
-      .then(res => {navigate('/home')})
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        navigate('/')
+      })
       .catch(err => {setErrorMessage(err.response.data.message)})
       .finally(() => {setLoading(false)})
   }
