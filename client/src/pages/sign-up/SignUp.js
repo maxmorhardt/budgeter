@@ -15,6 +15,13 @@ const SignUp = () => {
   const navigate = useNavigate()
   
   const navigateToLogIn = () => {navigate('/log-in')}
+
+  useEffect(() => {
+    token = localStorage.getItem('token')
+    if (token) {
+      navigate('/')
+    }
+  } ,[])
   
   const handleSubmit = async (e) => {
     e.preventDefault()
