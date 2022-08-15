@@ -62,7 +62,7 @@ router.post('/sign-up', (req, res) => {
       } else {
         res.status(200).json({ message: 'Token valid' })
       }
-    }).catch(err => res.status(400).json(err))
+    })
   })
 
   // Generates a token for a user
