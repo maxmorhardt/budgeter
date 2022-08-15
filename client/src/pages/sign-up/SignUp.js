@@ -17,7 +17,7 @@ const SignUp = () => {
   const navigateToLogIn = () => {navigate('/log-in')}
 
   useEffect(() => {
-    token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token) {
       navigate('/')
     }
