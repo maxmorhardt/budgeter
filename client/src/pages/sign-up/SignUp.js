@@ -59,6 +59,7 @@ const SignUp = () => {
   useEffect(() => {
     if (errorMessage) {
       alert(errorMessage)
+      setErrorMessage('')
     }
   } , [errorMessage])
 
