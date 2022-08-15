@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import toastConfigs from '../../helpers/toastConfigs'
 import { API_PATH } from '../../helpers/environ'
+import Sidebar from '../../components/sidebar'
+import './Home.css'
 
 // Home page
 const Home = () => {
@@ -17,36 +19,39 @@ const Home = () => {
   */
 
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   // Check if token exists and is valid
   useEffect(() => {
-    setLoading(true)
     const token = localStorage.getItem('token')
     if (!token) {
       navigate('/log-in')
-    }
-    axios.get(API_PATH + '/api/auth/validate-token', {
-      headers: {
-        Authorization: token
-      }
-    })
-      .catch(err => {
-        toast.error('Session expired', toastConfigs)
-        localStorage.removeItem('token')
-        navigate('/log-in')
+    } else {
+      axios.get(API_PATH + '/api/auth/validate-token', {
+        headers: {
+          Authorization: token
+        }
       })
-    setLoading(false)
+        .catch(err => {
+          toast.error('Session expired', toastConfigs)
+          localStorage.removeItem('token')
+          navigate('/log-in')
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    }
   } , []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Add the navbar to the page
   return (
-    <div>
-      {loading ? <h1>Loading...</h1> : <h1>Home</h1>}
-      <button onClick={() => {
-        localStorage.removeItem('token')
-        navigate('/log-in')
-      } }>Log Out</button>
+    <div className="home">
+      <Sidebar />
+      <div className="home-container">
+        <h1>container</h1>
+      </div>
     </div>
+
   )
 }
 
