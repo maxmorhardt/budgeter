@@ -18,8 +18,7 @@ https://www.mongodb.com/docs/manual/administration/install-community/
 ### 3. Once the packages are installed, in the root directory run:
 
 `cp .env.example .env` 
-- This will create a file for environment varaibles. 
-- You will need to change <NAME_OF_YOUR_LOCAL_DB> to a MongoDB database that is on your local machine.
+- This will create a file for environment varaibles.
 
 ### 4. Run the following command to start developing:
 
