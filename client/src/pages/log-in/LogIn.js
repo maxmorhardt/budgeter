@@ -19,7 +19,7 @@ const LogIn = () => {
     if (token) {
       navigate('/')
     }
-  } ,[])
+  } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async (e) => {
     e.preventDefault()

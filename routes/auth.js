@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 router.post('/log-in', (req, res) => {
+  const body = req.body
   User.findOne({ email: body.email })
     .then(user => {
       if (!user) {
@@ -27,6 +28,7 @@ router.post('/log-in', (req, res) => {
 })
 
 router.post('/sign-up', (req, res) => {
+  const body = req.body
   User.findOne({ email: body.email })
     .then(user => {
       if (user) {
