@@ -51,21 +51,16 @@ const SignUp = () => {
       return setErrorMessage('Passwords do not match')
     }
     setLoading(true)
-    axios({
-      method: 'POST',
-      url:  API_PATH + '/api/auth/sign-up',
-      data: {
-        email: email,
-        password: password
-      }
-    })
+    axios.post(`${API_PATH}/api/auth/sign-up`, { email, password })
       .then(res => {
-        toast.success('Account created!', toastConfigs)
+        toast.success('Signed up successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
         navigate('/')
+      }).catch(err => {
+        setErrorMessage(err.response.data.message)
+      }).finally(() => {
+        setLoading(false)
       })
-      .catch(err => {setErrorMessage(err.response.data.message)})
-      .finally(() => {setLoading(false)})
   }
 
   // Render sign up page
