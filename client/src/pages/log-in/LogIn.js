@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { toast, ToastContainer } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
+import { toast } from "react-toastify";
 import toastConfigs from '../../helpers/toastConfigs';
 import axios from 'axios'
 import { API_PATH } from '../../helpers/environ'
@@ -28,7 +27,6 @@ const LogIn = () => {
     if (token) {
       navigate('/')
     }
-    injectStyle()
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Notifications for errors
@@ -55,6 +53,7 @@ const LogIn = () => {
       }
     })
       .then(res => {
+        toast.success('Logged in successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
         navigate('/')
       })
@@ -88,7 +87,6 @@ const LogIn = () => {
           <button type='button' className='sign-up-log-in-page-button' onClick={navigateToSignUp}>Sign Up</button>
         </div>
       </form>
-      <ToastContainer />
     </div>
   )
 }
