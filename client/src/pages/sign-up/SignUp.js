@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
+import { toast, ToastContainer } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import toastConfigs from '../../helpers/toastConfigs'
 import axios from 'axios'
 import { API_PATH } from '../../helpers/environ'
 import './SignUp.css'
 
+// Sign up page
 const SignUp = () => {
+  // Hooks
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -13,26 +18,32 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   
-  const navigateToLogIn = () => {navigate('/log-in')}
+  // Navigate to login page
+  const navigateToLogIn = () => {
+    navigate('/log-in')
+  }
 
+  // Initial checks and setup
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       navigate('/')
     }
+    injectStyle()
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // REMOVE THIS ONCE ALERTS ARE IMPLEMENTED
+  // Notifications for errors
   useEffect(() => {
     if (errorMessage) {
-      alert(errorMessage)
+      toast.error(errorMessage, toastConfigs)
     }
     setErrorMessage('')
   } ,[errorMessage])
   
+  // Signs up users and sends them to the home page
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       return setErrorMessage('Please fill in all fields')
     }
     // eslint-disable-next-line
@@ -40,11 +51,11 @@ const SignUp = () => {
     if (!emailRegex.test(email)) {
       return setErrorMessage('Please enter a valid email')
     }
-    if (password !== confirmPassword) {
-      return setErrorMessage('Passwords do not match')
-    }
     if (password.length < 6) {
       return setErrorMessage('Password must be at least 6 characters')
+    }
+    if (password !== confirmPassword) {
+      return setErrorMessage('Passwords do not match')
     }
     setLoading(true)
     axios({
@@ -63,6 +74,7 @@ const SignUp = () => {
       .finally(() => {setLoading(false)})
   }
 
+  // Render sign up page
   return (
     <div>
       <h1 className='budgeter-text-sign-up'>Budgeter</h1>
@@ -95,6 +107,7 @@ const SignUp = () => {
           <button type='button' className='log-in-sign-up-page-button' onClick={navigateToLogIn}>Log In</button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   )
 }
