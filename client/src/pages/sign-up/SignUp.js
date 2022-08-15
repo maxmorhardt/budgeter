@@ -16,11 +16,6 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  
-  // Navigate to login page
-  const navigateToLogIn = () => {
-    navigate('/log-in')
-  }
 
   // Initial checks and setup
   useEffect(() => {
@@ -103,7 +98,12 @@ const SignUp = () => {
         <div className='line'></div>
         <div className='sign-up-bottom-container'>
           <p className='already-have-account'>Already have an account?</p>
-          <button type='button' className='log-in-sign-up-page-button' onClick={navigateToLogIn}>Log In</button>
+          <button 
+            type='button' 
+            className='log-in-sign-up-page-button' 
+            onClick={() =>
+              navigate('/log-in')
+            }>Log In</button>
         </div>
       </form>
     </div>

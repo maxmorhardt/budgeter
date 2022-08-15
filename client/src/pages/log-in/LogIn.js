@@ -16,11 +16,6 @@ const LogIn = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  // Navigate to sign up page
-  const navigateToSignUp = () => {
-    navigate('/sign-up')
-  }
-
   // Initial checks and setup
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -84,7 +79,13 @@ const LogIn = () => {
         <div className='line'></div>
         <div className='log-in-box-bottom-container'>
           <p className='no-account-text'>Don't have an account?</p>
-          <button type='button' className='sign-up-log-in-page-button' onClick={navigateToSignUp}>Sign Up</button>
+          <button 
+            type='button' 
+            className='sign-up-log-in-page-button' 
+            onClick={() => {
+              navigate('/sign-up')
+            }
+            }>Sign Up</button>
         </div>
       </form>
     </div>
