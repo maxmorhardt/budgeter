@@ -1,9 +1,21 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import toastConfigs from '../../helpers/toastConfigs'
 import { API_PATH } from '../../helpers/environ'
 
+// Home page
 const Home = () => {
+
+  /*
+  * How to implement loading screen
+  * First check to see if data has arrived
+  * Render loading screen if not
+  * Once useEffect has loaded data, render the page
+  * (Loading state not needed anymore)
+  */
+
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
@@ -19,14 +31,8 @@ const Home = () => {
         Authorization: token
       }
     })
-      .then(res => {
-        console.log(res.data)
-        if (res.data.isExpired) {
-          localStorage.removeItem('token')
-          navigate('/log-in')
-        }
-      })
       .catch(err => {
+        toast.error('Session expired', toastConfigs)
         localStorage.removeItem('token')
         navigate('/log-in')
       })
@@ -36,7 +42,6 @@ const Home = () => {
   return (
     <div>
       {loading ? <h1>Loading...</h1> : <h1>Home</h1>}
-      {/* button to log out */}
       <button onClick={() => {
         localStorage.removeItem('token')
         navigate('/log-in')

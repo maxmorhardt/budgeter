@@ -4,6 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
 
+// Logs in a user using bcrypt and responds with token
 router.post('/log-in', (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
@@ -27,6 +28,7 @@ router.post('/log-in', (req, res) => {
     }).catch(err => res.status(400).json(err))
 })
 
+// Registers a user using bcrypt and responds with token
 router.post('/sign-up', (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
@@ -51,13 +53,19 @@ router.post('/sign-up', (req, res) => {
     })
   })
   
+  // Checks to see if a token is expired
   router.get('/validate-token', (req, res) => {
     const token = req.headers.authorization
-    const decoded = jwt.verify(token, process.env.TOKEN_SECRET)
-    const isExpired = decoded.exp < Date.now() / 1000
-    return res.status(200).json({ 'isExpired': isExpired })
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+      if (err) {
+        res.status(401).json({ message: 'Token is not valid' })
+      } else {
+        res.status(200).json({ message: 'Token valid' })
+      }
+    }).catch(err => res.status(400).json(err))
   })
 
+  // Generates a token for a user
   function generateToken(user) {
     return jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '1d' })
   }
