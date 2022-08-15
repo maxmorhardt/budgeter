@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
-import { toast, ToastContainer } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
+import { toast } from 'react-toastify'
 import toastConfigs from '../../helpers/toastConfigs'
 import axios from 'axios'
 import { API_PATH } from '../../helpers/environ'
@@ -17,11 +16,6 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  
-  // Navigate to login page
-  const navigateToLogIn = () => {
-    navigate('/log-in')
-  }
 
   // Initial checks and setup
   useEffect(() => {
@@ -29,7 +23,6 @@ const SignUp = () => {
     if (token) {
       navigate('/')
     }
-    injectStyle()
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Notifications for errors
@@ -67,6 +60,7 @@ const SignUp = () => {
       }
     })
       .then(res => {
+        toast.success('Account created!', toastConfigs)
         localStorage.setItem('token', res.data.token)
         navigate('/')
       })
@@ -104,10 +98,14 @@ const SignUp = () => {
         <div className='line'></div>
         <div className='sign-up-bottom-container'>
           <p className='already-have-account'>Already have an account?</p>
-          <button type='button' className='log-in-sign-up-page-button' onClick={navigateToLogIn}>Log In</button>
+          <button 
+            type='button' 
+            className='log-in-sign-up-page-button' 
+            onClick={() =>
+              navigate('/log-in')
+            }>Log In</button>
         </div>
       </form>
-      <ToastContainer />
     </div>
   )
 }
