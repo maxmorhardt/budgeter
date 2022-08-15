@@ -50,7 +50,7 @@ router.post('/sign-up', (req, res) => {
       }
     })
   })
-
+  
   router.get('/validate-token', (req, res) => {
     const token = req.headers.authorization
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET)

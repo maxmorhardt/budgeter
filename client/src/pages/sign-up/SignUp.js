@@ -28,6 +28,10 @@ const SignUp = () => {
     if (!email || !password) {
       return setErrorMessage('Please fill in all fields')
     }
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (!emailRegex.test(email)) {
+      return setErrorMessage('Please enter a valid email')
+    }
     if (password !== confirmPassword) {
       return setErrorMessage('Passwords do not match')
     }
