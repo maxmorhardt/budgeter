@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
 import axios from 'axios'
 import { API_PATH } from '../../helpers/environ'
-import { ToastProvider, useToasts } from 'react-toast-notifications'
 import './SignUp.css'
 
 const SignUp = () => {
@@ -22,12 +21,21 @@ const SignUp = () => {
       navigate('/')
     }
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // REMOVE THIS ONCE ALERTS ARE IMPLEMENTED
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage)
+    }
+    setErrorMessage('')
+  } ,[errorMessage])
   
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email || !password) {
       return setErrorMessage('Please fill in all fields')
     }
+    // eslint-disable-next-line
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!emailRegex.test(email)) {
       return setErrorMessage('Please enter a valid email')
@@ -54,14 +62,6 @@ const SignUp = () => {
       .catch(err => {setErrorMessage(err.response.data.message)})
       .finally(() => {setLoading(false)})
   }
-
-  // REMOVE THIS ONCE ALERTS ARE IMPLEMENTED
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage)
-      setErrorMessage('')
-    }
-  } , [errorMessage])
 
   return (
     <div>
@@ -98,17 +98,5 @@ const SignUp = () => {
     </div>
   )
 }
-
-// const AlertError = ({ content }) => {
-//   const { addToast } = useToasts()
-//   return (
-//     <button onClick={() => addToast(content, {
-//       appearance: 'error',
-//       autoDismiss: true,
-//     })}>
-//       Add Toast
-//     </button>
-//   )
-// }
 
 export default SignUp
