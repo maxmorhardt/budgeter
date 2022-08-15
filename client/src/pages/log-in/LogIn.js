@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormInput from '../../components/form-input'
+import { toast, ToastContainer } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import toastConfigs from '../../helpers/toastConfigs';
 import axios from 'axios'
 import { API_PATH } from '../../helpers/environ'
 import './LogIn.css'
 
+// Log in page
 const LogIn = () => {
+  // Hooks
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const navigateToSignUp = () => {navigate('/sign-up')}
+  // Navigate to sign up page
+  const navigateToSignUp = () => {
+    navigate('/sign-up')
+  }
 
+  // Initial checks and setup
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       navigate('/')
     }
+    injectStyle()
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Notifications for errors
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage, toastConfigs)
+    }
+    setErrorMessage('')
+  } ,[errorMessage])
+
+  // Sign in users and sends them to the home page
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email || !password) {
@@ -43,12 +62,7 @@ const LogIn = () => {
       .finally(() => {setLoading(false)})
   }
 
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage)
-    }
-  } , [errorMessage])
-
+  // Render log in page
   return (
     <div>
       <h1 className='budgeter-text-log-in-page'>Budgeter</h1>
@@ -74,6 +88,7 @@ const LogIn = () => {
           <button type='button' className='sign-up-log-in-page-button' onClick={navigateToSignUp}>Sign Up</button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   )
 }
