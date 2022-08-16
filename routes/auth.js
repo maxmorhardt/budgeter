@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 // Logs in a user using bcrypt and responds with token
-router.post('/log-in', (req, res) => {
+router.post('/login', (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
     .then(user => {
@@ -29,7 +29,7 @@ router.post('/log-in', (req, res) => {
 })
 
 // Registers a user using bcrypt and responds with token
-router.post('/sign-up', (req, res) => {
+router.post('/signup', (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
     .then(user => {

@@ -3,7 +3,6 @@ const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
 const app = express()
 const port = process.env.PORT || 5000
@@ -38,6 +37,5 @@ app.use(cors(corsOptions))
 
 // Routes
 app.use('/api/auth', authRoute)
-//app.use('/api', userRoute)
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
