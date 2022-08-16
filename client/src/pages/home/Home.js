@@ -49,6 +49,12 @@ const Home = () => {
       <div>
         <h1>container</h1>
       </div>
+      <button onClick={() => {
+        localStorage.removeItem('token')
+        navigate('/login')}}>
+          Logout
+      </button>
+
     </div>
 
   )
