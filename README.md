@@ -20,7 +20,12 @@ https://www.mongodb.com/docs/manual/administration/install-community/
 `cp .env.example .env` 
 - This will create a file for environment varaibles.
 
-### 4. Run the following command to start developing:
+### 4. To configure nodemon, run:
+
+`nodemon --config nodemon.json`
+- Now nodemon won't conflict with React's development server.
+
+### 5. Run the following command to start developing:
 
 `yarn start`
 - In the client directory, this will start the React app in a development server.
