@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { injectStyle } from "react-toastify/dist/inject-style";
 import { ToastContainer } from "react-toastify";
-import LogIn from "./pages/log-in"
-import SignUp from "./pages/sign-up"
+import Login from "./pages/login"
+import Signup from "./pages/signup"
 import Home from "./pages/home"
+import './index.css'
 
-// If window isnt undefined, inject styles
+// Adds styles to the toast notifications
 if (typeof window !== 'undefined') {
   injectStyle();
 }
@@ -18,8 +19,8 @@ root.render(
   <>
     <BrowserRouter>
       <Routes>
-        <Route path='/log-in' element={<LogIn/>} />
-        <Route path='/sign-up' element={<SignUp/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Signup/>} />
         <Route path='/' element={<Home/>} />
       </Routes>
     </BrowserRouter>

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import FormInput from '../../components/form-input'
 import { toast } from "react-toastify";
-import toastConfigs from '../../helpers/toastConfigs';
 import axios from 'axios'
+import toastConfigs from '../../helpers/toastConfigs';
 import { API_PATH } from '../../helpers/environ'
-import './LogIn.css'
+import FormInput from '../../components/form-input'
 
 // Log in page
-const LogIn = () => {
+const Login = () => {
   // Hooks
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -39,7 +38,7 @@ const LogIn = () => {
       return setErrorMessage('Please fill in all fields')
     }
     setLoading(true)
-    axios.post(`${API_PATH}/api/auth/log-in`, { email, password })
+    axios.post(`${API_PATH}/api/auth/login`, { email, password })
       .then(res => {
         toast.success('Logged in successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
@@ -54,8 +53,10 @@ const LogIn = () => {
   // Render log in page
   return (
     <div>
-      <h1 className='budgeter-text-log-in-page'>Budgeter</h1>
-      <form className='log-in-box'>
+      <h1 className='font-budgeter text-6xl font-bold text-budgeter-blue text-center mt-10 mb-10'>
+        Budgeter
+      </h1>
+      <form className='w-box h-box flex flex-col justify-center items-center m-auto bg-white rounded-3xl shadow-box'>
         <FormInput
           value = {email}
           type='text' 
@@ -70,21 +71,28 @@ const LogIn = () => {
           onChange={(event) => {
             setPassword(event.target.value)
           }} />
-        <button disabled={loading} className='submit-log-in-button' type='submit' onClick={handleSubmit}>Log In</button>
-        <div className='line'></div>
-        <div className='log-in-box-bottom-container'>
-          <p className='no-account-text'>Don't have an account?</p>
+        <button 
+          className='w-5/6 h-10 rounded-md border border-solid border-white bg-budgeter-blue color text-white text-xl cursor-pointer' 
+          type='submit' 
+          disabled={loading} 
+          onClick={handleSubmit}>
+            Log In
+        </button>
+        <div className='w-11/12 h-px bg-black mt-8' />
+        <div className='flex flex-col justify-center items-center mt-5'>
+          <p className='text-xl text-black mt-4'>
+            Don't have an account?
+          </p>
           <button 
+            className='w-36 h-10 rounded-md border border-solid border-white bg-budgeter-blue color text-white text-xl cursor-pointer mt-4' 
             type='button' 
-            className='sign-up-log-in-page-button' 
-            onClick={() => {
-              navigate('/sign-up')
-            }
-            }>Sign Up</button>
+            onClick={() => navigate('/signup')}>
+              Sign Up
+          </button>
         </div>
       </form>
     </div>
   )
 }
 
-export default LogIn
+export default Login

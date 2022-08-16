@@ -2,10 +2,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Sidebar from '../../components/sidebar'
 import toastConfigs from '../../helpers/toastConfigs'
 import { API_PATH } from '../../helpers/environ'
-import Sidebar from '../../components/sidebar'
-import './Home.css'
 
 // Home page
 const Home = () => {
@@ -25,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) {
-      navigate('/log-in')
+      navigate('/login')
     } else {
       axios.get(API_PATH + '/api/auth/validate-token', {
         headers: {
@@ -35,7 +34,7 @@ const Home = () => {
         .catch(err => {
           toast.error('Session expired', toastConfigs)
           localStorage.removeItem('token')
-          navigate('/log-in')
+          navigate('/login')
         })
         .finally(() => {
           setLoading(false)
@@ -45,9 +44,9 @@ const Home = () => {
 
   // Add the navbar to the page
   return (
-    <div className="home">
+    <div>
       <Sidebar />
-      <div className="home-container">
+      <div>
         <h1>container</h1>
       </div>
     </div>
