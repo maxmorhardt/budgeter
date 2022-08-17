@@ -44,17 +44,11 @@ const Home = () => {
 
   // Add the navbar to the page
   return (
-    <div>
+    <div className='flex'>
       <Sidebar />
-      <div>
+      <div className='flex-[6]'>
         <h1>container</h1>
       </div>
-      <button onClick={() => {
-        localStorage.removeItem('token')
-        navigate('/login')}}>
-          Logout
-      </button>
-
     </div>
 
   )

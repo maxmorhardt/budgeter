@@ -1,46 +1,65 @@
 import React from 'react'
-import './Sidebar.css'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import toastConfigs from '../../helpers/toastConfigs'
+import GridViewSharpIcon from '@mui/icons-material/GridViewSharp'
+import SettingsApplicationsSharpIcon from '@mui/icons-material/SettingsApplicationsSharp'
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp'
+import ArrowCircleLeftSharpIcon from '@mui/icons-material/ArrowCircleLeftSharp'
 
 const Sidebar = () => {
-
+  const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen)
   }
-  // create a sidebar that can be opened and closed
-  // use the toggleSidebar function to open and close the sidebar
-  // have the name Budgeter at the top
-  // have options to view the dashboard, monthly, weekly, daily, add an expense and log out
+
+  const handleLogout = () => {
+    toast.success('Logged out successfully!', toastConfigs)
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   return (
-    <div className="sidebar">
-      <div className="sidebar-header">
-        <h3>Budgeter</h3>
+    <div className='h-[100vh] flex-1'>
+      <ArrowCircleLeftSharpIcon />
+      <div className='h-12 flex items-center justify-center'>
+        <span className='font-budgeter text-3xl font-bold text-budgeter-blue text-center'>
+          Budgeter
+        </span>
       </div>
-      <div className="sidebar-options">
-        <div className="sidebar-option">
-          <h4>Dashboard</h4>
-          <i className="fas fa-home"></i>
-        </div>
-        <div className="sidebar-option">
-          <h4>Monthly</h4>
-          <i className="fas fa-calendar-alt"></i>
-        </div>
-        <div className="sidebar-option">
-          <h4>Weekly</h4>
-          <i className="fas fa-calendar-week"></i>
-        </div>
-        <div className="sidebar-option">
-          <h4>Daily</h4>
-          <i className="fas fa-calendar-day"></i>
-        </div>
-        <div className="sidebar-option">
-          <h4>Add Expense</h4>
-          <i className="fas fa-plus"></i>
-        </div>
-        <div className="sidebar-option">
-          <h4>Log Out</h4>
-          <i className="fas fa-sign-out-alt"></i>
-        </div>
+      <hr className='border-[.5px] border-stone-700' />
+      <div>
+        <ul>
+          <p className='text-xs text-bold text-[#999] mt-4 pl-1'>
+            Main
+          </p>
+          <li className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'>
+            <GridViewSharpIcon />
+            <span>
+              Dashboard
+            </span>
+          </li>
+          <p className='text-xs text-bold text-[#999] mt-4 pl-1'>
+            Profile
+          </p>
+          <li className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'>
+            <SettingsApplicationsSharpIcon />
+            <span>
+              Settings
+            </span>
+          </li>
+          <li 
+            className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'
+            onClick={handleLogout}
+          >
+            <LogoutSharpIcon />
+            <span>
+              Logout
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
   )
