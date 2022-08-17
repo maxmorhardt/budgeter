@@ -7,16 +7,7 @@ import toastConfigs from '../../helpers/toastConfigs'
 import { API_PATH } from '../../helpers/environ'
 
 // Home page
-const Home = () => {
-
-  /*
-  * How to implement loading screen
-  * First check to see if data has arrived
-  * Render loading screen if not
-  * Once useEffect has loaded data, render the page
-  * (Loading state not needed anymore)
-  */
-
+const Dashboard = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(true)
 
@@ -54,4 +45,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Dashboard

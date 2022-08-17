@@ -19,7 +19,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
-      navigate('/')
+      navigate('/dashboard')
     }
   } ,[]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -42,7 +42,7 @@ const Login = () => {
       .then(res => {
         toast.success('Logged in successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
-        navigate('/')
+        navigate('/dashboard')
       }).catch(err => {
         setErrorMessage(err.response.data.message)
       }).finally(() => {
@@ -72,7 +72,7 @@ const Login = () => {
             setPassword(event.target.value)
           }} />
         <button 
-          className='w-5/6 h-10 rounded-md border border-solid border-white bg-budgeter-blue color text-white text-xl cursor-pointer' 
+          className='w-5/6 h-10 rounded-md border border-solid border-white bg-budgeter-blue text-white text-xl cursor-pointer' 
           type='submit' 
           disabled={loading} 
           onClick={handleSubmit}>
@@ -83,12 +83,13 @@ const Login = () => {
           <p className='text-xl text-black mt-4'>
             Don't have an account?
           </p>
-          <button 
-            className='w-36 h-10 rounded-md border border-solid border-white bg-budgeter-blue color text-white text-xl cursor-pointer mt-4' 
-            type='button' 
+          <div 
+            className='w-36 h-10 rounded-md border border-solid border-white bg-budgeter-blue cursor-pointer mt-4'  
             onClick={() => navigate('/signup')}>
-              Sign Up
-          </button>
+              <p className='text-white text-xl text-center mt-1'>
+                Sign Up
+              </p>
+          </div>
         </div>
       </form>
     </div>
