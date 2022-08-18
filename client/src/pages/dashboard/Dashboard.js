@@ -33,7 +33,6 @@ const Dashboard = () => {
     }
   } , []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Add the navbar to the page
   return (
     <div className='flex'>
       <Sidebar />
