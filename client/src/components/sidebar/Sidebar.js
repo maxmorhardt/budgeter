@@ -34,7 +34,8 @@ const Sidebar = () => {
           </p>
           <li 
             className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'
-            onClick={() => navigate('/dashboard')}>
+            onClick={() => navigate('/dashboard')}
+          >
             <GridViewSharpIcon />
             <span className='ml-1'>
               Dashboard
@@ -43,7 +44,10 @@ const Sidebar = () => {
           <p className='text-xs text-bold text-[#999] mt-4 pl-1'>
             Profile
           </p>
-          <li className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'>
+          <li 
+            className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'
+            onClick={() => navigate('/settings')}
+          >
             <SettingsApplicationsSharpIcon />
             <span className='ml-1'>
               Settings

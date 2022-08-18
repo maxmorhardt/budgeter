@@ -1,7 +1,7 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 import Sidebar from '../../components/sidebar'
 import Loading from '../../components/loading'
 import toastConfigs from '../../helpers/toastConfigs'

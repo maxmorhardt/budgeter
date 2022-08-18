@@ -97,7 +97,7 @@ const Signup = () => {
           onClick={handleSubmit}>
             Sign Up
         </button>
-        <div className='w-11/12 h-px bg-black mt-8' />
+        <hr className='w-11/12 h-[1.5px] bg-black mt-8' />
         <div className='flex flex-col justify-center items-center mt-5'>
           <p className='text-xl text-black mt-4'>
             Already have an account?
