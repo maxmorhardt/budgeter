@@ -39,20 +39,16 @@ const Dashboard = () => {
     }
   } , []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!loading) {
-    return (
-      <div className='flex'>
-        <Sidebar />
-        <div className='flex-[6]'>
+  return (
+    <div className='flex'>
+      <Sidebar />
+      <div className='flex-[6]'>
+        {loading ? <Loading /> : 
           <h1>container</h1>
-        </div>
+        }
       </div>
-    )
-  } else {
-      return (
-        <Loading />
-      )
-    }
+    </div>
+  )
 }
 
 export default Dashboard
