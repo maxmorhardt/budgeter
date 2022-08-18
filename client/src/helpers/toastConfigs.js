@@ -4,6 +4,7 @@ const toastConfigs = {
   hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: false,
+  pauseOnFocusLoss: false
 }
 
 export default toastConfigs
