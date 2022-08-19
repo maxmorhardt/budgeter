@@ -8,11 +8,6 @@ import LogoutSharpIcon from '@mui/icons-material/LogoutSharp'
 
 const Sidebar = () => {
   const navigate = useNavigate()
-  const [sidebarOpen, setSidebarOpen] = React.useState(false)
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen)
-  }
 
   const handleLogout = () => {
     toast.success('Logged out successfully!', toastConfigs)

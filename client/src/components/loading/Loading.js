@@ -9,6 +9,7 @@ const Loading = () => {
       <img 
         src={require('../../assets/budgeter-192x192.png')} 
         className='w-32 h-32 mb-14'
+        alt='Budgeter logo'
       />
       <SyncLoader color='#3d5f82'/>
     </div>
