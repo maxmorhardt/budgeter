@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 // Logs in a user using bcrypt and responds with token
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
     .then(user => {
@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
 })
 
 // Registers a user using bcrypt and responds with token
-router.post('/signup', (req, res) => {
+router.post('/signup', async (req, res) => {
   const body = req.body
   User.findOne({ email: body.email })
     .then(user => {
@@ -54,7 +54,7 @@ router.post('/signup', (req, res) => {
   })
   
   // Checks to see if a token is expired
-  router.get('/validate-token', (req, res) => {
+  router.get('/validate-token', async (req, res) => {
     const token = req.headers.authorization
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
       if (err) {
@@ -67,7 +67,7 @@ router.post('/signup', (req, res) => {
 
   // Generates a token for a user
   function generateToken(user) {
-    return jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '1d' })
+    return jwt.sign({ user }, process.env.TOKEN_SECRET, { expiresIn: '1w' })
   }
 
 module.exports = router;
