@@ -54,6 +54,7 @@ const Signup = () => {
       .then(res => {
         toast.success('Signed up successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('uid', res.data.uid)
         navigate('/dashboard')
       }).catch(err => {
         setErrorMessage(err.response.data.message)

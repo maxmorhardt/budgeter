@@ -18,6 +18,7 @@ router.post('/login', async (req, res) => {
               res.status(200).json({ 
                 message: 'Log in successful',
                 token: generateToken(user), 
+                uid: user._id
               })
             } else {
               res.status(400).json({ message: 'Incorrect password' })
@@ -45,7 +46,8 @@ router.post('/signup', async (req, res) => {
             newUser.save()
               .then(user => {res.status(200).json(
                 { message: 'User created', 
-                  token: generateToken(user)
+                  token: generateToken(user),
+                  uid: newUser._id
                })
               }).catch(err => res.status(400).json(err))
           }).catch(err => res.status(400).json(err))

@@ -42,6 +42,7 @@ const Login = () => {
       .then(res => {
         toast.success('Logged in successfully!', toastConfigs)
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('uid', res.data.uid)
         navigate('/dashboard')
       }).catch(err => {
         setErrorMessage(err.response.data.message)
