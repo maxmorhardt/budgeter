@@ -41,15 +41,6 @@ const Sidebar = () => {
           </p>
           <li 
             className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'
-            onClick={() => navigate('/settings')}
-          >
-            <SettingsApplicationsSharpIcon />
-            <span className='ml-1'>
-              Settings
-            </span>
-          </li>
-          <li 
-            className='hover:bg-[#e6e6e6] active:bg-[#ccc] cursor-pointer pl-2 mt-2'
             onClick={handleLogout}
           >
             <LogoutSharpIcon />

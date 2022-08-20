@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 import Login from "./pages/login"
 import Signup from "./pages/signup"
 import Dashboard from "./pages/dashboard"
-import Settings from "./pages/settings"
 import './index.css'
 
 // Adds styles to the toast notifications
@@ -31,7 +30,6 @@ root.render(
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/settings' element={<Settings/>} />
         <Route
           path="*"
           element={<Navigate to="/dashboard" replace />}
