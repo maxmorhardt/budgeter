@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import Sidebar from '../../components/sidebar'
 import Loading from '../../components/loading'
 import toastConfigs from '../../helpers/toastConfigs'
 import { API_PATH } from '../../helpers/environ'
@@ -39,12 +38,24 @@ const Dashboard = () => {
     }
   } , []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleLogout = () => {
+    toast.success('Logged out', toastConfigs)
+    localStorage.removeItem('token')
+    navigate('/login')
+  }
+
   return (
     <div className='flex'>
-      <Sidebar />
       <div className='flex-[6]'>
         {loading ? <Loading /> : 
-          <h1>container</h1>
+          <div>
+            <h1>container</h1>
+            <button 
+              onClick={handleLogout}
+              className='w-[100px] bg-white rounded-xl'>
+                Logout
+            </button>
+          </div>
         }
       </div>
     </div>
