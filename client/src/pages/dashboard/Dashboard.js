@@ -34,9 +34,42 @@ const Dashboard = () => {
 
 
   return (
-    <div>
+    <>
       <Navbar />
-    </div>
+      <VerticalContainer />
+    </>
+  )
+}
+
+/**
+ * Right now is the container for the expenses
+ * Could be component with data prop
+ */
+const VerticalContainer = () => {
+  return (
+    <>
+      <div className='min-h-[93vh] w-box m-auto bg-white shadow-box'>
+        <Expenses />
+      </div>
+    </>
+  )
+}
+
+/**
+ * Scrollable:
+    * Amount spent on left
+    * Datetime on right
+ * Total amount on bottom
+ */
+const Expenses = () => {
+  return (
+    <>
+      <div className='flex my-auto items-center justify-between w-[100%] h-14'>
+        <p>Amount</p>
+        <p>Datetime</p>
+      </div>
+      <hr className='h-[1.5px] bg-black'/>
+    </>
   )
 }
 
