@@ -49,24 +49,21 @@ const VerticalContainer = () => {
   return (
     <>
       <div className='min-h-[93vh] w-box m-auto bg-white shadow-box'>
-        <Expenses />
+        <Expense amount='100' reason='Stuff' date='10/25'>
+
+        </Expense>
       </div>
     </>
   )
 }
 
-/**
- * Scrollable:
-    * Amount spent on left
-    * Datetime on right
- * Total amount on bottom
- */
-const Expenses = () => {
+const Expense = ({amount, reason, date}) => {
   return (
     <>
       <div className='flex my-auto items-center justify-between w-[100%] h-14'>
-        <p>Amount</p>
-        <p>Datetime</p>
+        <p className='ml-1'>{amount}</p>
+        <p>{reason}</p>
+        <p className='mr-1'>{date}</p>
       </div>
       <hr className='h-[1.5px] bg-black'/>
     </>
